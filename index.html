@@ -1,1 +1,1090 @@
-<h1>Muhammad Haris</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alex Mercer — DevOps Engineer</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --glass: rgba(255,255,255,0.12);
+    --glass-border: rgba(255,255,255,0.22);
+    --glass-shadow: rgba(0,0,0,0.35);
+    --accent: #0a84ff;
+    --accent2: #30d158;
+    --accent3: #ff453a;
+    --accent4: #ffd60a;
+    --text: rgba(255,255,255,0.95);
+    --text-dim: rgba(255,255,255,0.55);
+    --text-dimmer: rgba(255,255,255,0.3);
+    --dock-bg: rgba(255,255,255,0.15);
+    --menubar-bg: rgba(20,20,30,0.55);
+    --window-bg: rgba(28,28,36,0.82);
+    --font: 'Outfit', sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+
+  html, body {
+    width: 100%; height: 100%; overflow: hidden;
+    font-family: var(--font);
+    background: #0f0f1a;
+    color: var(--text);
+    user-select: none;
+  }
+
+  /* ── WALLPAPER ── */
+  .wallpaper {
+    position: fixed; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 20% 10%, #1a0533 0%, transparent 55%),
+      radial-gradient(ellipse 80% 60% at 80% 90%, #001a3a 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 90% 10%, #003321 0%, transparent 50%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, #0a0a1a 0%, #050510 100%);
+    animation: wallpaper-drift 20s ease-in-out infinite alternate;
+  }
+  .wallpaper::after {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(circle at 30% 60%, rgba(10,132,255,0.08) 0%, transparent 40%),
+      radial-gradient(circle at 70% 30%, rgba(48,209,88,0.06) 0%, transparent 40%);
+    animation: wallpaper-drift 14s ease-in-out infinite alternate-reverse;
+  }
+  @keyframes wallpaper-drift {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0.85; transform: scale(1.04); }
+  }
+
+  /* Stars */
+  .stars {
+    position: fixed; inset: 0; z-index: 1; pointer-events: none;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.6) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 40%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 40% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 30%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 85% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 50% 80%, rgba(255,255,255,0.45) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 75%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 35% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(2px 2px at 68% 88%, rgba(255,255,255,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 5% 50%, rgba(255,255,255,0.4) 0%, transparent 100%);
+  }
+
+  /* ── MENU BAR ── */
+  .menubar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    height: 28px;
+    background: var(--menubar-bg);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center;
+    padding: 0 16px;
+    gap: 20px;
+  }
+  .menubar-left { display: flex; align-items: center; gap: 18px; flex: 1; }
+  .menubar-logo {
+    font-size: 16px; font-weight: 700;
+    background: linear-gradient(135deg, #0a84ff, #30d158);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+  }
+  .menubar-item {
+    font-size: 12px; color: var(--text); opacity: 0.85;
+    font-weight: 500; cursor: default;
+    transition: opacity 0.2s;
+  }
+  .menubar-item:hover { opacity: 1; }
+  .menubar-right {
+    display: flex; align-items: center; gap: 14px;
+    font-size: 12px; color: var(--text-dim);
+  }
+  .menubar-icon { font-size: 13px; cursor: default; }
+  .menubar-time { font-size: 12px; font-weight: 500; color: var(--text); font-variant-numeric: tabular-nums; }
+
+  /* ── DESKTOP ── */
+  .desktop {
+    position: fixed; inset: 28px 0 82px 0; z-index: 10;
+    display: flex; align-items: center; justify-content: center;
+    padding: 20px;
+  }
+
+  /* ── MAIN WINDOW ── */
+  .main-window {
+    width: min(900px, 100%);
+    height: min(580px, 100%);
+    background: var(--window-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    box-shadow:
+      0 32px 80px rgba(0,0,0,0.6),
+      0 0 0 0.5px rgba(255,255,255,0.08) inset,
+      0 1px 0 rgba(255,255,255,0.15) inset;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+    animation: window-appear 0.5s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  @keyframes window-appear {
+    from { transform: scale(0.92) translateY(20px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  /* Title Bar */
+  .titlebar {
+    height: 44px; min-height: 44px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; padding: 0 16px;
+    gap: 12px; position: relative;
+  }
+  .traffic-lights { display: flex; gap: 8px; align-items: center; }
+  .tl {
+    width: 12px; height: 12px; border-radius: 50%;
+    cursor: pointer; position: relative; transition: filter 0.2s;
+  }
+  .tl:hover { filter: brightness(1.2); }
+  .tl-red { background: #ff5f57; box-shadow: 0 0 6px rgba(255,95,87,0.5); }
+  .tl-yellow { background: #febc2e; box-shadow: 0 0 6px rgba(254,188,46,0.5); }
+  .tl-green { background: #28c840; box-shadow: 0 0 6px rgba(40,200,64,0.5); }
+  .titlebar-center {
+    position: absolute; left: 50%; transform: translateX(-50%);
+    font-size: 12px; font-weight: 600; color: var(--text-dim);
+    letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px;
+  }
+  .titlebar-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 6px var(--accent); }
+
+  /* Slide Nav Dots */
+  .slide-nav { display: flex; gap: 6px; align-items: center; margin-left: auto; }
+  .slide-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: rgba(255,255,255,0.2); cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .slide-dot.active {
+    background: var(--accent); width: 18px; border-radius: 3px;
+    box-shadow: 0 0 8px var(--accent);
+  }
+
+  /* ── SLIDES ── */
+  .slides-wrapper { flex: 1; overflow: hidden; position: relative; }
+  .slides-track {
+    display: flex; height: 100%;
+    transition: transform 0.55s cubic-bezier(0.77,0,0.175,1);
+  }
+  .slide { min-width: 100%; height: 100%; padding: 36px 48px; overflow-y: auto; }
+  .slide::-webkit-scrollbar { width: 4px; }
+  .slide::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+  /* Slide Nav Arrows */
+  .slide-arrows {
+    position: absolute; bottom: 20px; right: 20px;
+    display: flex; gap: 8px;
+  }
+  .arrow-btn {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: var(--text); font-size: 14px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; backdrop-filter: blur(10px);
+  }
+  .arrow-btn:hover { background: rgba(10,132,255,0.3); border-color: var(--accent); transform: scale(1.1); }
+
+  /* ── SLIDE 1: INTRO ── */
+  .intro-slide { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .intro-greeting {
+    font-size: 13px; font-family: var(--mono); color: var(--accent2);
+    letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+    opacity: 0.9;
+  }
+  .intro-name {
+    font-size: clamp(36px, 5vw, 58px); font-weight: 800;
+    line-height: 1.05; letter-spacing: -2px;
+    background: linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.7) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .intro-title {
+    font-size: clamp(16px, 2.5vw, 22px); font-weight: 500;
+    color: transparent;
+    background: linear-gradient(90deg, var(--accent), var(--accent2));
+    -webkit-background-clip: text; background-clip: text;
+    margin-bottom: 20px;
+  }
+  .intro-tagline {
+    font-size: 15px; color: var(--text-dim); max-width: 480px;
+    line-height: 1.7; margin-bottom: 32px;
+  }
+  .intro-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .intro-tag {
+    padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 500;
+    font-family: var(--mono);
+    background: rgba(10,132,255,0.15); border: 1px solid rgba(10,132,255,0.3);
+    color: var(--accent); letter-spacing: 0.5px;
+  }
+  .intro-tag.green { background: rgba(48,209,88,0.12); border-color: rgba(48,209,88,0.3); color: var(--accent2); }
+  .intro-tag.purple { background: rgba(191,90,242,0.12); border-color: rgba(191,90,242,0.3); color: #bf5af2; }
+  .intro-avatar {
+    position: absolute; right: 48px; top: 50%; transform: translateY(-50%);
+    width: 120px; height: 120px; border-radius: 50%;
+    background: linear-gradient(135deg, #0a84ff, #30d158);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+    box-shadow: 0 0 40px rgba(10,132,255,0.3), 0 0 80px rgba(48,209,88,0.15);
+    animation: avatar-float 4s ease-in-out infinite;
+  }
+  @keyframes avatar-float {
+    0%, 100% { transform: translateY(-50%) translateY(0); }
+    50% { transform: translateY(-50%) translateY(-10px); }
+  }
+
+  /* ── SLIDE 2: SKILLS ── */
+  .slide-heading {
+    font-size: 11px; font-family: var(--mono); color: var(--accent);
+    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 6px; opacity: 0.8;
+  }
+  .slide-title {
+    font-size: 28px; font-weight: 700; letter-spacing: -0.8px;
+    margin-bottom: 28px;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.75));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .skill-group {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 18px;
+    transition: all 0.3s;
+  }
+  .skill-group:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.14); transform: translateY(-2px); }
+  .skill-group-title {
+    font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .skill-group-icon { font-size: 14px; }
+  .skill-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-pill {
+    padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 500;
+    font-family: var(--mono);
+    background: rgba(10,132,255,0.12); border: 1px solid rgba(10,132,255,0.2);
+    color: rgba(255,255,255,0.8); transition: all 0.2s;
+  }
+  .skill-pill:hover { background: rgba(10,132,255,0.25); transform: scale(1.05); }
+  .skill-pill.g { background: rgba(48,209,88,0.12); border-color: rgba(48,209,88,0.2); }
+  .skill-pill.p { background: rgba(191,90,242,0.12); border-color: rgba(191,90,242,0.2); }
+  .skill-pill.o { background: rgba(255,159,10,0.12); border-color: rgba(255,159,10,0.2); }
+
+  /* ── SLIDE 3: PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .project-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 20px;
+    cursor: pointer; transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative; overflow: hidden;
+  }
+  .project-card::before {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(10,132,255,0.08), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .project-card:hover { transform: translateY(-4px); border-color: rgba(10,132,255,0.3); box-shadow: 0 12px 30px rgba(10,132,255,0.15); }
+  .project-card:hover::before { opacity: 1; }
+  .project-emoji { font-size: 24px; margin-bottom: 10px; }
+  .project-name { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+  .project-desc { font-size: 12px; color: var(--text-dim); line-height: 1.6; margin-bottom: 12px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .project-tag {
+    padding: 2px 8px; border-radius: 4px; font-size: 10px; font-family: var(--mono);
+    background: rgba(255,255,255,0.07); color: var(--text-dim); border: 1px solid rgba(255,255,255,0.1);
+  }
+
+  /* ── SLIDE 4: EXPERIENCE ── */
+  .exp-list { display: flex; flex-direction: column; gap: 18px; }
+  .exp-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 20px; border-radius: 12px;
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.07);
+    transition: all 0.3s;
+  }
+  .exp-item:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,0.13); }
+  .exp-icon {
+    width: 42px; height: 42px; border-radius: 10px; min-width: 42px;
+    background: linear-gradient(135deg, rgba(10,132,255,0.3), rgba(48,209,88,0.2));
+    display: flex; align-items: center; justify-content: center; font-size: 20px;
+  }
+  .exp-content { flex: 1; }
+  .exp-role { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+  .exp-company { font-size: 12px; color: var(--accent); margin-bottom: 6px; font-family: var(--mono); }
+  .exp-period { font-size: 11px; color: var(--text-dim); margin-bottom: 10px; }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .exp-bullets li {
+    font-size: 12px; color: var(--text-dim); padding-left: 14px; position: relative; line-height: 1.6;
+  }
+  .exp-bullets li::before { content: '▸'; position: absolute; left: 0; color: var(--accent2); font-size: 10px; top: 2px; }
+
+  /* ── SLIDE 5: CONTACT ── */
+  .contact-slide { display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 24px; }
+  .contact-card {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px; padding: 24px; display: flex; align-items: center; gap: 16px;
+    cursor: pointer; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    text-decoration: none; color: inherit;
+  }
+  .contact-card:hover { transform: scale(1.03) translateY(-2px); border-color: rgba(10,132,255,0.4); background: rgba(10,132,255,0.1); }
+  .contact-card-icon {
+    width: 46px; height: 46px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center; font-size: 22px; min-width: 46px;
+  }
+  .contact-card-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 4px; font-family: var(--mono); }
+  .contact-card-value { font-size: 14px; font-weight: 500; }
+  .contact-cta {
+    margin-top: 30px; display: flex; align-items: center; gap: 12px;
+    padding: 18px 24px; border-radius: 14px;
+    background: linear-gradient(135deg, rgba(10,132,255,0.2), rgba(48,209,88,0.1));
+    border: 1px solid rgba(10,132,255,0.3);
+  }
+  .contact-cta-text { font-size: 14px; color: var(--text-dim); line-height: 1.6; }
+  .contact-cta-text strong { color: var(--text); display: block; margin-bottom: 4px; }
+
+  /* ── SECONDARY WINDOWS ── */
+  .sec-window {
+    position: fixed; z-index: 500;
+    background: var(--window-bg);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid var(--glass-border);
+    border-radius: 14px;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 0 0.5px rgba(255,255,255,0.07) inset;
+    display: none; flex-direction: column;
+    overflow: hidden;
+    animation: window-appear 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+  }
+  .sec-window.visible { display: flex; }
+  .sec-window .titlebar { height: 38px; min-height: 38px; }
+  .sec-window-body { padding: 24px; flex: 1; overflow-y: auto; font-size: 13px; line-height: 1.8; color: var(--text-dim); }
+  .sec-window-body::-webkit-scrollbar { width: 4px; }
+  .sec-window-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 2px; }
+
+  .terminal-win { width: 520px; height: 300px; bottom: 120px; right: 40px; }
+  .terminal-body { background: rgba(0,0,0,0.6) !important; font-family: var(--mono) !important; font-size: 12px !important; color: var(--accent2) !important; padding: 20px !important; }
+  .term-line { margin-bottom: 4px; }
+  .term-prompt { color: var(--accent); margin-right: 6px; }
+  .term-comment { color: var(--text-dimmer); }
+  .term-cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent2); animation: blink 1s step-end infinite; vertical-align: middle; margin-left: 2px; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  /* ── DOCK ── */
+  .dock-container {
+    position: fixed; bottom: 8px; left: 0; right: 0; z-index: 900;
+    display: flex; justify-content: center; align-items: flex-end; padding-bottom: 4px;
+  }
+  .dock {
+    display: flex; align-items: flex-end; gap: 8px;
+    background: rgba(255,255,255,0.13);
+    backdrop-filter: blur(30px) saturate(200%);
+    -webkit-backdrop-filter: blur(30px) saturate(200%);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px; padding: 8px 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.15) inset;
+  }
+  .dock-separator {
+    width: 1px; height: 48px; background: rgba(255,255,255,0.2); margin: 0 4px; align-self: center;
+  }
+  .dock-item {
+    display: flex; flex-direction: column; align-items: center; gap: 4px;
+    cursor: pointer; position: relative;
+    transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .dock-item:hover { transform: translateY(-14px) scale(1.35); }
+  .dock-item:hover .dock-tooltip { opacity: 1; transform: translateY(-4px); }
+  .dock-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; position: relative; overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: box-shadow 0.2s;
+  }
+  .dock-item:hover .dock-icon { box-shadow: 0 8px 24px rgba(0,0,0,0.5); }
+  .dock-dot {
+    width: 4px; height: 4px; border-radius: 50%;
+    background: rgba(255,255,255,0.5); margin-top: 2px;
+  }
+  .dock-tooltip {
+    position: absolute; bottom: 72px; left: 50%; transform: translateX(-50%) translateY(0);
+    background: rgba(30,30,40,0.9); color: var(--text);
+    padding: 4px 10px; border-radius: 8px; font-size: 11px; font-weight: 500; white-space: nowrap;
+    opacity: 0; transition: all 0.2s; pointer-events: none;
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Dock icon colors */
+  .di-docker { background: linear-gradient(135deg, #0db7ed, #086dd7); }
+  .di-k8s { background: linear-gradient(135deg, #326ce5, #1a3fa0); }
+  .di-jenkins { background: linear-gradient(135deg, #d33833, #a02020); }
+  .di-github { background: linear-gradient(135deg, #24292e, #3a4047); }
+  .di-n8n { background: linear-gradient(135deg, #ea4b71, #bf2050); }
+  .di-linux { background: linear-gradient(135deg, #ffcc00, #e6a800); }
+  .di-odoo { background: linear-gradient(135deg, #714B67, #4a2d45); }
+  .di-terminal { background: linear-gradient(135deg, #1c1c2e, #2d2d44); border: 1px solid rgba(48,209,88,0.4); }
+  .di-projects { background: linear-gradient(135deg, #0a84ff, #0050c8); }
+  .di-contact { background: linear-gradient(135deg, #30d158, #1a8a35); }
+
+  /* ── SLIDE BOTTOM NAV ── */
+  .window-footer {
+    height: 38px; min-height: 38px;
+    background: rgba(255,255,255,0.02); border-top: 1px solid rgba(255,255,255,0.07);
+    display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+  }
+  .footer-info { font-size: 11px; font-family: var(--mono); color: var(--text-dimmer); }
+  .footer-nav { display: flex; gap: 8px; }
+  .footer-btn {
+    padding: 4px 12px; border-radius: 6px; font-size: 11px; font-weight: 500;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
+    color: var(--text-dim); cursor: pointer; transition: all 0.2s;
+    font-family: var(--font);
+  }
+  .footer-btn:hover { background: rgba(10,132,255,0.2); border-color: rgba(10,132,255,0.4); color: var(--text); }
+  .footer-btn.primary { background: rgba(10,132,255,0.2); border-color: rgba(10,132,255,0.4); color: var(--accent); }
+
+  /* Notification bubble */
+  .notif {
+    position: fixed; top: 40px; right: 16px; z-index: 2000;
+    background: rgba(28,28,36,0.9);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 14px; padding: 12px 16px;
+    display: flex; align-items: flex-start; gap: 12px;
+    max-width: 300px; font-size: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    transform: translateX(340px); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+  }
+  .notif.show { transform: translateX(0); }
+  .notif-icon { font-size: 20px; }
+  .notif-title { font-weight: 600; color: var(--text); margin-bottom: 2px; }
+  .notif-body { color: var(--text-dim); line-height: 1.5; }
+
+  @media (max-width: 700px) {
+    .intro-avatar { display: none; }
+    .skills-grid, .projects-grid, .contact-grid { grid-template-columns: 1fr; }
+    .dock-icon { width: 40px; height: 40px; font-size: 22px; }
+    .slide { padding: 24px 20px; }
+    .main-window { border-radius: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wallpaper"></div>
+<div class="stars"></div>
+
+<!-- ── MENU BAR ── -->
+<div class="menubar">
+  <div class="menubar-left">
+    <div class="menubar-logo">🍎</div>
+    <div class="menubar-item">Alex Mercer</div>
+    <div class="menubar-item" style="opacity:0.5">File</div>
+    <div class="menubar-item" style="opacity:0.5">View</div>
+    <div class="menubar-item" style="opacity:0.5">Window</div>
+    <div class="menubar-item" style="opacity:0.5">Help</div>
+  </div>
+  <div class="menubar-right">
+    <span class="menubar-icon">🔋</span>
+    <span class="menubar-icon">📶</span>
+    <span class="menubar-icon">🔍</span>
+    <span class="menubar-time" id="mb-time">--:--</span>
+  </div>
+</div>
+
+<!-- ── DESKTOP ── -->
+<div class="desktop">
+  <div class="main-window">
+    <!-- Title Bar -->
+    <div class="titlebar">
+      <div class="traffic-lights">
+        <div class="tl tl-red" onclick="showNotif('Window closed','Just kidding — stay a while 😄')"></div>
+        <div class="tl tl-yellow" onclick="showNotif('Window minimized','Minimized to Dock')"></div>
+        <div class="tl tl-green" onclick="showNotif('Full Screen','Enjoy the immersion!')"></div>
+      </div>
+      <div class="titlebar-center">
+        <div class="titlebar-dot"></div>
+        <span id="win-title">Portfolio.app — Introduction</span>
+      </div>
+      <div class="slide-nav" id="slide-dots"></div>
+    </div>
+
+    <!-- Slides -->
+    <div class="slides-wrapper">
+      <div class="slides-track" id="slides-track">
+
+        <!-- Slide 1: Intro -->
+        <div class="slide">
+          <div class="intro-slide" style="position:relative">
+            <div class="intro-greeting">// Hello, World!</div>
+            <div class="intro-name">Alex Mercer</div>
+            <div class="intro-title">DevOps Engineer & Cloud Architect</div>
+            <div class="intro-tagline">
+              Building resilient infrastructure, automating everything, and bridging the gap between development and operations — at scale.
+            </div>
+            <div class="intro-tags">
+              <span class="intro-tag">Kubernetes</span>
+              <span class="intro-tag">CI/CD</span>
+              <span class="intro-tag green">Cloud Native</span>
+              <span class="intro-tag green">n8n Automation</span>
+              <span class="intro-tag purple">AI Workflows</span>
+              <span class="intro-tag purple">Odoo ERP</span>
+              <span class="intro-tag">Docker</span>
+              <span class="intro-tag green">Linux</span>
+            </div>
+            <div class="intro-avatar">👨‍💻</div>
+          </div>
+        </div>
+
+        <!-- Slide 2: Skills -->
+        <div class="slide">
+          <div class="slide-heading">// Capabilities</div>
+          <div class="slide-title">Tech Stack & Skills</div>
+          <div class="skills-grid">
+            <div class="skill-group">
+              <div class="skill-group-title"><span class="skill-group-icon">🐳</span>DevOps & Infrastructure</div>
+              <div class="skill-pills">
+                <span class="skill-pill">Docker</span>
+                <span class="skill-pill">Kubernetes</span>
+                <span class="skill-pill">Helm</span>
+                <span class="skill-pill">Terraform</span>
+                <span class="skill-pill">Ansible</span>
+                <span class="skill-pill">Jenkins</span>
+                <span class="skill-pill">GitLab CI</span>
+                <span class="skill-pill">GitHub Actions</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title"><span class="skill-group-icon">☁️</span>Cloud Platforms</div>
+              <div class="skill-pills">
+                <span class="skill-pill g">AWS</span>
+                <span class="skill-pill g">GCP</span>
+                <span class="skill-pill g">Azure</span>
+                <span class="skill-pill g">DigitalOcean</span>
+                <span class="skill-pill g">Cloudflare</span>
+                <span class="skill-pill g">Hetzner</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title"><span class="skill-group-icon">🤖</span>AI & Automation</div>
+              <div class="skill-pills">
+                <span class="skill-pill p">n8n</span>
+                <span class="skill-pill p">LangChain</span>
+                <span class="skill-pill p">OpenAI API</span>
+                <span class="skill-pill p">AI Agents</span>
+                <span class="skill-pill p">Zapier</span>
+                <span class="skill-pill p">Make.com</span>
+              </div>
+            </div>
+            <div class="skill-group">
+              <div class="skill-group-title"><span class="skill-group-icon">📦</span>Odoo & Business Systems</div>
+              <div class="skill-pills">
+                <span class="skill-pill o">Odoo ERP</span>
+                <span class="skill-pill o">Module Dev</span>
+                <span class="skill-pill o">PostgreSQL</span>
+                <span class="skill-pill o">Python</span>
+                <span class="skill-pill o">XML/QWeb</span>
+                <span class="skill-pill o">OCA</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3: Projects -->
+        <div class="slide">
+          <div class="slide-heading">// Portfolio</div>
+          <div class="slide-title">Featured Projects</div>
+          <div class="projects-grid">
+            <div class="project-card">
+              <div class="project-emoji">🚀</div>
+              <div class="project-name">Zero-Downtime Deployment Pipeline</div>
+              <div class="project-desc">Full GitOps pipeline with ArgoCD, blue-green deployments, and automated rollback on Kubernetes.</div>
+              <div class="project-tags">
+                <span class="project-tag">K8s</span>
+                <span class="project-tag">ArgoCD</span>
+                <span class="project-tag">GitOps</span>
+                <span class="project-tag">Helm</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-emoji">🤖</div>
+              <div class="project-name">AI-Powered DevOps Assistant</div>
+              <div class="project-desc">n8n workflow automating incident detection, Slack notifications, and auto-remediation using GPT-4.</div>
+              <div class="project-tags">
+                <span class="project-tag">n8n</span>
+                <span class="project-tag">GPT-4</span>
+                <span class="project-tag">Slack API</span>
+                <span class="project-tag">PagerDuty</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-emoji">🏭</div>
+              <div class="project-name">Odoo Manufacturing ERP</div>
+              <div class="project-desc">Custom Odoo 16 implementation for a manufacturing company with 50+ custom modules and integrations.</div>
+              <div class="project-tags">
+                <span class="project-tag">Odoo 16</span>
+                <span class="project-tag">Python</span>
+                <span class="project-tag">PostgreSQL</span>
+                <span class="project-tag">REST API</span>
+              </div>
+            </div>
+            <div class="project-card">
+              <div class="project-emoji">📊</div>
+              <div class="project-name">Multi-Cloud Observability Stack</div>
+              <div class="project-desc">Unified monitoring with Prometheus, Grafana, and Loki across AWS, GCP, and on-premise infrastructure.</div>
+              <div class="project-tags">
+                <span class="project-tag">Prometheus</span>
+                <span class="project-tag">Grafana</span>
+                <span class="project-tag">Loki</span>
+                <span class="project-tag">Terraform</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4: Experience -->
+        <div class="slide">
+          <div class="slide-heading">// Career</div>
+          <div class="slide-title">Work Experience</div>
+          <div class="exp-list">
+            <div class="exp-item">
+              <div class="exp-icon">🏢</div>
+              <div class="exp-content">
+                <div class="exp-role">Senior DevOps Engineer</div>
+                <div class="exp-company">CloudScale Technologies</div>
+                <div class="exp-period">Jan 2022 – Present · 3 yrs</div>
+                <ul class="exp-bullets">
+                  <li>Architected Kubernetes clusters serving 10M+ daily requests across 3 cloud regions</li>
+                  <li>Reduced deployment time by 78% through fully automated CI/CD with GitHub Actions</li>
+                  <li>Led migration of 40+ microservices from monolith to cloud-native architecture</li>
+                  <li>Implemented AI-powered alerting reducing MTTR by 60%</li>
+                </ul>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">🔧</div>
+              <div class="exp-content">
+                <div class="exp-role">DevOps & Odoo Engineer</div>
+                <div class="exp-company">TechVentures MENA</div>
+                <div class="exp-period">Mar 2020 – Dec 2021 · 1 yr 9 mos</div>
+                <ul class="exp-bullets">
+                  <li>Deployed and maintained Odoo ERP for 15+ enterprise clients across the region</li>
+                  <li>Built custom CI/CD pipelines for automated Odoo module testing and deployment</li>
+                  <li>Automated business workflows using n8n, saving 200+ hours/month</li>
+                </ul>
+              </div>
+            </div>
+            <div class="exp-item">
+              <div class="exp-icon">🌱</div>
+              <div class="exp-content">
+                <div class="exp-role">Systems Administrator</div>
+                <div class="exp-company">DataFlow Inc.</div>
+                <div class="exp-period">Jun 2018 – Feb 2020 · 1 yr 8 mos</div>
+                <ul class="exp-bullets">
+                  <li>Managed Linux server infrastructure (Ubuntu, CentOS) for 100+ VMs</li>
+                  <li>Introduced Docker containerization reducing server costs by 40%</li>
+                  <li>Automated system monitoring and backup procedures with Bash & Python</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5: Contact -->
+        <div class="slide contact-slide">
+          <div class="slide-heading">// Get In Touch</div>
+          <div class="slide-title">Let's Build Together</div>
+          <div class="contact-grid">
+            <a class="contact-card" href="mailto:alex@example.com">
+              <div class="contact-card-icon" style="background:linear-gradient(135deg,#0a84ff,#086dd7)">📧</div>
+              <div>
+                <div class="contact-card-label">Email</div>
+                <div class="contact-card-value">alex@mercer.dev</div>
+              </div>
+            </a>
+            <a class="contact-card" href="https://linkedin.com" target="_blank">
+              <div class="contact-card-icon" style="background:linear-gradient(135deg,#0077b5,#005885)">💼</div>
+              <div>
+                <div class="contact-card-label">LinkedIn</div>
+                <div class="contact-card-value">linkedin.com/in/alexmercer</div>
+              </div>
+            </a>
+            <a class="contact-card" href="https://github.com" target="_blank">
+              <div class="contact-card-icon" style="background:linear-gradient(135deg,#24292e,#3a4047)">🐙</div>
+              <div>
+                <div class="contact-card-label">GitHub</div>
+                <div class="contact-card-value">github.com/alexmercer</div>
+              </div>
+            </a>
+            <a class="contact-card" href="#">
+              <div class="contact-card-icon" style="background:linear-gradient(135deg,#714B67,#4a2d45)">📄</div>
+              <div>
+                <div class="contact-card-label">Resume</div>
+                <div class="contact-card-value">Download CV (.pdf)</div>
+              </div>
+            </a>
+          </div>
+          <div class="contact-cta">
+            <span style="font-size:24px">🚀</span>
+            <div class="contact-cta-text">
+              <strong>Available for freelance & full-time opportunities</strong>
+              Currently open to exciting DevOps, Cloud, or AI automation projects. Let's ship something great together!
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /slides-track -->
+
+      <!-- Arrow Navigation -->
+      <div class="slide-arrows">
+        <button class="arrow-btn" onclick="prevSlide()">←</button>
+        <button class="arrow-btn" onclick="nextSlide()">→</button>
+      </div>
+    </div><!-- /slides-wrapper -->
+
+    <!-- Footer -->
+    <div class="window-footer">
+      <div class="footer-info" id="footer-info">Slide 1 of 5</div>
+      <div class="footer-nav">
+        <button class="footer-btn" onclick="prevSlide()">‹ Prev</button>
+        <button class="footer-btn primary" id="next-btn" onclick="nextSlide()">Next ›</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TERMINAL WINDOW ── -->
+<div class="sec-window terminal-win" id="terminal-win">
+  <div class="titlebar">
+    <div class="traffic-lights">
+      <div class="tl tl-red" onclick="closeWin('terminal-win')"></div>
+      <div class="tl tl-yellow"></div>
+      <div class="tl tl-green"></div>
+    </div>
+    <div class="titlebar-center" style="font-family:var(--mono)">zsh — alex@macbook</div>
+  </div>
+  <div class="sec-window-body terminal-body">
+    <div class="term-line"><span class="term-comment"># DevOps Portfolio Terminal v1.0</span></div>
+    <div class="term-line"><span class="term-prompt">alex@macbook ~ $</span>whoami</div>
+    <div class="term-line">Alex Mercer — DevOps Engineer</div>
+    <div class="term-line" style="margin-top:8px"><span class="term-prompt">alex@macbook ~ $</span>kubectl get nodes</div>
+    <div class="term-line">NAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS&nbsp;&nbsp;&nbsp;ROLES&nbsp;&nbsp;&nbsp;AGE</div>
+    <div class="term-line">prod-node-01&nbsp;&nbsp;&nbsp;Ready&nbsp;&nbsp;&nbsp;&nbsp;master&nbsp;&nbsp;42d</div>
+    <div class="term-line">prod-node-02&nbsp;&nbsp;&nbsp;Ready&nbsp;&nbsp;&nbsp;&nbsp;worker&nbsp;&nbsp;42d</div>
+    <div class="term-line">prod-node-03&nbsp;&nbsp;&nbsp;Ready&nbsp;&nbsp;&nbsp;&nbsp;worker&nbsp;&nbsp;42d</div>
+    <div class="term-line" style="margin-top:8px"><span class="term-prompt">alex@macbook ~ $</span>docker ps --format "table {{.Names}}\t{{.Status}}"</div>
+    <div class="term-line">NAMES&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STATUS</div>
+    <div class="term-line">nginx&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up 12 days</div>
+    <div class="term-line">postgres&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up 12 days</div>
+    <div class="term-line">n8n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Up 5 days</div>
+    <div class="term-line" style="margin-top:8px"><span class="term-prompt">alex@macbook ~ $</span><span class="term-cursor"></span></div>
+  </div>
+</div>
+
+<!-- ── NOTIFICATION ── -->
+<div class="notif" id="notif">
+  <div class="notif-icon" id="notif-icon">💡</div>
+  <div>
+    <div class="notif-title" id="notif-title">Hello!</div>
+    <div class="notif-body" id="notif-body">Welcome to my portfolio.</div>
+  </div>
+</div>
+
+<!-- ── DOCK ── -->
+<div class="dock-container">
+  <div class="dock">
+    <!-- Section navigation icons -->
+    <div class="dock-item" onclick="goSlide(0)">
+      <div class="dock-icon di-projects">🏠</div>
+      <div class="dock-dot"></div>
+      <div class="dock-tooltip">Home</div>
+    </div>
+    <div class="dock-item" onclick="goSlide(1)">
+      <div class="dock-icon di-docker">⚙️</div>
+      <div class="dock-dot"></div>
+      <div class="dock-tooltip">Skills</div>
+    </div>
+    <div class="dock-item" onclick="goSlide(2)">
+      <div class="dock-icon di-projects">📁</div>
+      <div class="dock-dot"></div>
+      <div class="dock-tooltip">Projects</div>
+    </div>
+    <div class="dock-item" onclick="goSlide(3)">
+      <div class="dock-icon di-k8s">💼</div>
+      <div class="dock-dot"></div>
+      <div class="dock-tooltip">Experience</div>
+    </div>
+    <div class="dock-item" onclick="goSlide(4)">
+      <div class="dock-icon di-contact">📬</div>
+      <div class="dock-dot"></div>
+      <div class="dock-tooltip">Contact</div>
+    </div>
+
+    <div class="dock-separator"></div>
+
+    <!-- Tool icons -->
+    <div class="dock-item" onclick="openTool('docker')">
+      <div class="dock-icon di-docker">🐳</div>
+      <div class="dock-tooltip">Docker</div>
+    </div>
+    <div class="dock-item" onclick="openTool('k8s')">
+      <div class="dock-icon di-k8s">⛵</div>
+      <div class="dock-tooltip">Kubernetes</div>
+    </div>
+    <div class="dock-item" onclick="openTool('jenkins')">
+      <div class="dock-icon di-jenkins">🔴</div>
+      <div class="dock-tooltip">Jenkins</div>
+    </div>
+    <div class="dock-item" onclick="window.open('https://github.com','_blank')">
+      <div class="dock-icon di-github">🐙</div>
+      <div class="dock-tooltip">GitHub</div>
+    </div>
+    <div class="dock-item" onclick="openTool('n8n')">
+      <div class="dock-icon di-n8n">🔀</div>
+      <div class="dock-tooltip">n8n</div>
+    </div>
+    <div class="dock-item" onclick="openTool('linux')">
+      <div class="dock-icon di-linux">🐧</div>
+      <div class="dock-tooltip">Linux</div>
+    </div>
+    <div class="dock-item" onclick="openTool('odoo')">
+      <div class="dock-icon di-odoo">📦</div>
+      <div class="dock-tooltip">Odoo</div>
+    </div>
+
+    <div class="dock-separator"></div>
+
+    <div class="dock-item" onclick="toggleTerminal()">
+      <div class="dock-icon di-terminal">🖥️</div>
+      <div class="dock-dot" id="term-dot" style="opacity:0"></div>
+      <div class="dock-tooltip">Terminal</div>
+    </div>
+  </div>
+</div>
+
+<!-- Dynamic tool windows will be injected here -->
+<div id="tool-windows"></div>
+
+<script>
+  // ── Clock ──
+  function updateClock() {
+    const now = new Date();
+    const h = now.getHours().toString().padStart(2,'0');
+    const m = now.getMinutes().toString().padStart(2,'0');
+    const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    document.getElementById('mb-time').textContent =
+      `${days[now.getDay()]} ${months[now.getMonth()]} ${now.getDate()} ${h}:${m}`;
+  }
+  updateClock(); setInterval(updateClock, 1000);
+
+  // ── Slides ──
+  const slideNames = ['Introduction','Skills','Projects','Experience','Contact'];
+  let current = 0;
+  const track = document.getElementById('slides-track');
+  const dotsContainer = document.getElementById('slide-dots');
+  const winTitle = document.getElementById('win-title');
+  const footerInfo = document.getElementById('footer-info');
+
+  // Build dots
+  slideNames.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goSlide(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goSlide(idx) {
+    current = Math.max(0, Math.min(slideNames.length - 1, idx));
+    track.style.transform = `translateX(-${current * 100}%)`;
+    document.querySelectorAll('.slide-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === current);
+    });
+    winTitle.textContent = `Portfolio.app — ${slideNames[current]}`;
+    footerInfo.textContent = `Slide ${current + 1} of ${slideNames.length}`;
+    const nb = document.getElementById('next-btn');
+    nb.textContent = current === slideNames.length - 1 ? 'Done ✓' : 'Next ›';
+  }
+
+  function nextSlide() { goSlide(current + 1 < slideNames.length ? current + 1 : current); }
+  function prevSlide() { goSlide(current - 1 >= 0 ? current - 1 : 0); }
+
+  // Keyboard navigation
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') nextSlide();
+    if (e.key === 'ArrowLeft') prevSlide();
+  });
+
+  // Touch swipe
+  let touchX = 0;
+  document.querySelector('.slides-wrapper').addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+  document.querySelector('.slides-wrapper').addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) dx < 0 ? nextSlide() : prevSlide();
+  });
+
+  // ── Notification ──
+  let notifTimer;
+  function showNotif(title, body, icon = '💡') {
+    const n = document.getElementById('notif');
+    document.getElementById('notif-title').textContent = title;
+    document.getElementById('notif-body').textContent = body;
+    document.getElementById('notif-icon').textContent = icon;
+    n.classList.add('show');
+    clearTimeout(notifTimer);
+    notifTimer = setTimeout(() => n.classList.remove('show'), 3500);
+  }
+  setTimeout(() => showNotif('Welcome!', 'Explore via the Dock below 👇', '👋'), 800);
+
+  // ── Terminal ──
+  let termOpen = false;
+  function toggleTerminal() {
+    const w = document.getElementById('terminal-win');
+    termOpen = !termOpen;
+    w.classList.toggle('visible', termOpen);
+    document.getElementById('term-dot').style.opacity = termOpen ? '1' : '0';
+  }
+  function closeWin(id) {
+    document.getElementById(id).classList.remove('visible');
+    if (id === 'terminal-win') { termOpen = false; document.getElementById('term-dot').style.opacity = '0'; }
+  }
+
+  // ── Tool Windows ──
+  const toolData = {
+    docker: {
+      title: '🐳 Docker — Container Runtime',
+      w: '420px', h: '280px', top: '80px', left: '40px',
+      body: `<p style="color:var(--accent2);font-family:var(--mono);font-size:12px;margin-bottom:16px">$ docker info</p>
+      <p><strong>Containers:</strong> 24 running, 3 stopped</p>
+      <p><strong>Images:</strong> 67 total</p>
+      <p><strong>Server Version:</strong> 24.0.5</p>
+      <p><strong>Storage Driver:</strong> overlay2</p>
+      <p><strong>Orchestration:</strong> Kubernetes 1.28</p>
+      <p style="margin-top:16px;color:var(--text-dim);font-size:11px">Expert in containerization, multi-stage builds, Docker Compose, private registries, and container security scanning.</p>`
+    },
+    k8s: {
+      title: '⛵ Kubernetes — Orchestration',
+      w: '440px', h: '290px', top: '80px', left: '100px',
+      body: `<p style="color:var(--accent);font-family:var(--mono);font-size:12px;margin-bottom:16px">$ kubectl cluster-info</p>
+      <p><strong>Cluster:</strong> prod-cluster-us-east</p>
+      <p><strong>Nodes:</strong> 12 worker, 3 master</p>
+      <p><strong>Pods Running:</strong> 284</p>
+      <p><strong>Namespaces:</strong> 18 active</p>
+      <p style="margin-top:12px"><strong>Tools:</strong> Helm, ArgoCD, Kustomize, Istio, Prometheus, Keda</p>
+      <p style="margin-top:12px;color:var(--text-dim);font-size:11px">Experienced in production K8s clusters, GitOps, auto-scaling, and multi-cluster federation.</p>`
+    },
+    jenkins: {
+      title: '🔴 Jenkins — CI/CD Pipelines',
+      w: '420px', h: '270px', top: '100px', left: '160px',
+      body: `<p style="color:var(--accent3);font-family:var(--mono);font-size:12px;margin-bottom:16px">Pipeline Status Dashboard</p>
+      <p>✅ <strong>main-deploy</strong> — Success (2m 34s)</p>
+      <p>✅ <strong>staging-build</strong> — Success (1m 12s)</p>
+      <p>⚡ <strong>feature-test</strong> — Running...</p>
+      <p>✅ <strong>security-scan</strong> — Success</p>
+      <p style="margin-top:16px;color:var(--text-dim);font-size:11px">Designed shared Jenkins libraries, Groovy pipelines, parallel stages, and artifact management for teams of 30+ developers.</p>`
+    },
+    n8n: {
+      title: '🔀 n8n — Workflow Automation',
+      w: '440px', h: '300px', top: '90px', left: '120px',
+      body: `<p style="color:#ea4b71;font-family:var(--mono);font-size:12px;margin-bottom:16px">Active Workflows</p>
+      <p>🤖 <strong>AI Incident Response</strong> — 1,240 executions</p>
+      <p>📊 <strong>DevOps Metrics Aggregator</strong> — 890 executions</p>
+      <p>📧 <strong>Alert Notification Router</strong> — 3,100 executions</p>
+      <p>🔄 <strong>Odoo-Slack Sync</strong> — 560 executions</p>
+      <p style="margin-top:16px;color:var(--text-dim);font-size:11px">Building complex n8n workflows with AI nodes, webhooks, and integrations with 50+ services for business process automation.</p>`
+    },
+    linux: {
+      title: '🐧 Linux — System Expertise',
+      w: '420px', h: '280px', top: '80px', left: '80px',
+      body: `<p style="color:var(--accent4);font-family:var(--mono);font-size:12px;margin-bottom:16px">$ uname -a</p>
+      <p>Linux prod-server 6.1.0 #1 SMP x86_64</p>
+      <p style="margin-top:12px"><strong>Distros:</strong> Ubuntu, CentOS, RHEL, Debian, Alpine</p>
+      <p><strong>Skills:</strong> Bash, systemd, cgroups, networking</p>
+      <p><strong>Security:</strong> SELinux, iptables, fail2ban, CIS hardening</p>
+      <p><strong>Performance:</strong> Kernel tuning, I/O optimization</p>
+      <p style="margin-top:12px;color:var(--text-dim);font-size:11px">8+ years of Linux administration, scripting, and production server management.</p>`
+    },
+    odoo: {
+      title: '📦 Odoo — ERP Solutions',
+      w: '440px', h: '300px', top: '80px', left: '100px',
+      body: `<p style="color:#714B67;font-family:var(--mono);font-size:12px;margin-bottom:16px">Odoo Environment v16.0</p>
+      <p><strong>Implementations:</strong> 15+ enterprise clients</p>
+      <p><strong>Modules:</strong> Manufacturing, Sales, Accounting, HR, CRM</p>
+      <p><strong>Custom Dev:</strong> 50+ proprietary modules</p>
+      <p><strong>Integrations:</strong> WooCommerce, Shopify, Payment APIs</p>
+      <p style="margin-top:16px;color:var(--text-dim);font-size:11px">Full-cycle Odoo consultant: requirement analysis, development, deployment, training, and ongoing support for SMEs and enterprises.</p>`
+    }
+  };
+
+  const openWindows = {};
+
+  function openTool(key) {
+    if (openWindows[key]) {
+      document.getElementById('tw-' + key).classList.remove('visible');
+      delete openWindows[key];
+      return;
+    }
+    const data = toolData[key];
+    if (!data) return;
+    const existing = document.getElementById('tw-' + key);
+    if (existing) { existing.classList.add('visible'); openWindows[key] = true; return; }
+
+    const win = document.createElement('div');
+    win.className = 'sec-window visible';
+    win.id = 'tw-' + key;
+    win.style.cssText = `width:${data.w};height:${data.h};top:${data.top};left:${data.left}`;
+    win.innerHTML = `
+      <div class="titlebar">
+        <div class="traffic-lights">
+          <div class="tl tl-red" onclick="closeTool('${key}')"></div>
+          <div class="tl tl-yellow"></div>
+          <div class="tl tl-green"></div>
+        </div>
+        <div class="titlebar-center" style="font-size:11px">${data.title}</div>
+      </div>
+      <div class="sec-window-body">${data.body}</div>`;
+    document.getElementById('tool-windows').appendChild(win);
+    openWindows[key] = true;
+  }
+
+  function closeTool(key) {
+    const el = document.getElementById('tw-' + key);
+    if (el) el.classList.remove('visible');
+    delete openWindows[key];
+  }
+
+  // Dock magnification via CSS proximity effect
+  document.querySelectorAll('.dock-item').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      const items = document.querySelectorAll('.dock-item');
+      const idx = Array.from(items).indexOf(this);
+      items.forEach((el, i) => {
+        const dist = Math.abs(i - idx);
+        const scale = dist === 0 ? 1 : dist === 1 ? 0.15 : 0;
+        el.style.transform = dist === 0 ? '' : `translateY(-${Math.max(0, 7 - dist * 3)}px) scale(${1 + scale})`;
+      });
+    });
+    item.addEventListener('mouseleave', function() {
+      document.querySelectorAll('.dock-item').forEach(el => el.style.transform = '');
+    });
+  });
+</script>
+</body>
+</html>
