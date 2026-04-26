@@ -1,29 +1,36 @@
 name: Portfolio Website
 
-on: 
+on:
   push:
     branches: [main]
 
-# Grant GITHUB_TOKEN the permissions required to make a Pages deployment
 permissions:
-  pages: write      # to deploy to Pages
+  pages: write
   id-token: write
+  contents: read
 
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
-    enviornment: 
+
+    environment:
       name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
-    steps: 
-      - name: checkout code
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Github Packages
+      # If your portfolio is plain HTML, this is enough.
+      # If React/Vite/Next static export, add build step here.
+      - name: Setup Pages
         uses: actions/configure-pages@v4
 
-      - name: Statuc code artifacts
-        uses: actions/upload-pages-artifact@v4
+      - name: Upload static site artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .   # change to 'dist' or 'build' if using a framework
 
-      - name: Deploy Github Pages on Github
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
