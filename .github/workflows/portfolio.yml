@@ -1,1 +1,26 @@
-name: Muhammad Haris Portfolio Website CI | CD Pipeline
+name: Portfolio Website
+
+on: 
+  push:
+    branches: [main]
+
+# Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+permissions:
+  pages: write      # to deploy to Pages
+  id-token: write
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Github Packages
+        uses: actions/configure-pages@v4
+
+      - name: Statuc code artifacts
+        uses: actions/upload-static-pages@v4
+
+      - name: Deploy Github Pages on Github
+        uses: actions/deploy-pages@v4
