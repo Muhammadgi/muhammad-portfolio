@@ -20,7 +20,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Statuc code artifacts
-        uses: actions/upload-static-pages@v4
+        uses: actions/upload-pages-artifact@v4
 
       - name: Deploy Github Pages on Github
         uses: actions/deploy-pages@v4
